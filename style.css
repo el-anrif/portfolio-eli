@@ -980,37 +980,6 @@ body.nav-open .notch-nav__scrim {
   color: var(--cyan);
 }
 
-.about__stats {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-.about__stats li {
-  padding: 1.6rem 1.2rem;
-  text-align: center;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-              border-color 0.3s ease;
-}
-.about__stats li:hover {
-  transform: translateY(-4px);
-  border-color: var(--cyan);
-}
-.stats__num {
-  display: block;
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: 2.4rem;
-  color: var(--bronze-2);
-  font-variant-numeric: tabular-nums;
-}
-.stats__label {
-  display: block;
-  margin-top: 0.35rem;
-  font-size: 0.82rem;
-  color: var(--ink-2);
-}
 
 /* --------------------------------------------------------------------------
    6. PROJETS
@@ -1835,9 +1804,6 @@ body.nav-open .notch-nav__scrim {
   .about__avatar {
     max-width: 200px;
     margin-inline: auto;
-  }
-  .about__stats {
-    grid-template-columns: 1fr;
   }
 
   .projects {

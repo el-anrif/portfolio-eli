@@ -10,7 +10,7 @@ One-page glassmorphism, univers réseau. **HTML + CSS + JS vanilla** — aucun f
 | -------------- | -------------------------------------------------------------------- |
 | `index.html`   | Structure sémantique (hero, à propos, projets, compétences, E5, contact) |
 | `style.css`    | Variables CSS (sombre / clair), verre dépoli, hero flouté, responsive, `prefers-reduced-motion` |
-| `script.js`    | Thème clair/sombre, nav à encoches + pilule active, menu compact, reveal, compteurs, modales, magnétisme, parallaxe du hero |
+| `script.js`    | Thème clair/sombre, nav à encoches + pilule active, menu compact, reveal, modales, magnétisme, parallaxe du hero |
 | `README.md`    | Ce fichier — checklist pour personnaliser                            |
 
 ## ✦ Assets à préparer (liste)

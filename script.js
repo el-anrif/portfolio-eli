@@ -1,7 +1,7 @@
 /* ==========================================================================
    Portfolio — EL-Anrif · BTS SIO SISR
    Interactions : thème clair/sombre, navigation à encoches, reveal au scroll,
-   compteurs, modales, boutons magnétiques, parallaxe du hero, éclat sur les cartes.
+   modales, boutons magnétiques, parallaxe du hero, éclat sur les cartes.
    ========================================================================== */
 (() => {
   'use strict';
@@ -219,44 +219,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     3. COMPTEURS ANIMÉS (chiffres clés)
-     ------------------------------------------------------------------------ */
-  const animateCount = (el) => {
-    const target = Number(el.dataset.count) || 0;
-    const suffix = el.dataset.suffix || '';
-    const duration = 1400;
-    const start = performance.now();
-    const tick = (now) => {
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  };
-
-  const numEls = document.querySelectorAll('.stats__num[data-count]');
-  if (reducedMotion || !('IntersectionObserver' in window)) {
-    numEls.forEach((el) => {
-      el.textContent = (el.dataset.count || 0) + (el.dataset.suffix || '');
-    });
-  } else {
-    const numIO = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateCount(entry.target);
-            numIO.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
-    numEls.forEach((el) => numIO.observe(el));
-  }
-
-  /* ------------------------------------------------------------------------
-     4. HERO : parallaxe verticale légère du contenu au scroll.
+     3. HERO : parallaxe verticale légère du contenu au scroll.
      ------------------------------------------------------------------------ */
   const hero = document.querySelector('.hero');
   const heroContent = document.querySelector('.hero__content');
@@ -270,7 +233,7 @@
   };
 
   /* ------------------------------------------------------------------------
-     5. ÉCLAT SUIVANT LE CURSEUR SUR LES CARTES PROJETS & COMPÉTENCES
+     4. ÉCLAT SUIVANT LE CURSEUR SUR LES CARTES PROJETS & COMPÉTENCES
      ------------------------------------------------------------------------ */
   if (!reducedMotion) {
     document.querySelectorAll('.proj-card, .skill').forEach((card) => {
@@ -283,7 +246,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     6. BOUTONS MAGNÉTIQUES (--mag-x / --mag-y consommés par le CSS)
+     5. BOUTONS MAGNÉTIQUES (--mag-x / --mag-y consommés par le CSS)
      ------------------------------------------------------------------------ */
   if (!reducedMotion && window.matchMedia('(pointer: fine)').matches) {
     document.querySelectorAll('.magnetic').forEach((btn) => {
@@ -303,7 +266,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     7. MODALES PROJETS (ouverture, fermeture, focus, Escape, verrou du body)
+     6. MODALES PROJETS (ouverture, fermeture, focus, Escape, verrou du body)
      ------------------------------------------------------------------------ */
   const modals = Array.from(document.querySelectorAll('.modal'));
   let lastFocused = null;
@@ -348,14 +311,14 @@
   );
 
   /* ------------------------------------------------------------------------
-     8. LIENS PLACEHOLDERS (PDF à venir) — on neutralise le clic
+     7. LIENS PLACEHOLDERS (PDF à venir) — on neutralise le clic
      ------------------------------------------------------------------------ */
   document.querySelectorAll('a[data-placeholder-todo]').forEach((a) =>
     a.addEventListener('click', (e) => e.preventDefault())
   );
 
   /* ------------------------------------------------------------------------
-     9. FORMULAIRE DE CONTACT — envoi via Formspree (AJAX)
+     8. FORMULAIRE DE CONTACT — envoi via Formspree (AJAX)
      ------------------------------------------------------------------------ */
   const form = document.getElementById('contact-form');
   const formOk = document.getElementById('form-ok');
@@ -444,7 +407,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     10. ANNÉE DU FOOTER
+     9. ANNÉE DU FOOTER
      ------------------------------------------------------------------------ */
   const year = new Date().getFullYear();
   document.querySelectorAll('.footer [data-year]').forEach((el) => {
