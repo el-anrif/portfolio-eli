@@ -34,7 +34,8 @@ One-page glassmorphism, univers réseau. **HTML + CSS + JS vanilla** — aucun f
 > ⚠ **Une fois un PDF fourni** : remplacer `href="#"` par `assets/pdf/…` et supprimer l'attribut `data-placeholder-todo` (et `aria-disabled="true"`).
 
 ### Divers
-- [ ] Mettre à jour les liens **LinkedIn** et **GitHub** (section contact).
+- [x] Lien **GitHub** configuré : https://github.com/el-anrif
+- [ ] Mettre à jour le lien **LinkedIn** (section contact).
 - [x] Adresse e-mail de contact configurée : `elanrifdaroueche37@gmail.com`.
 
 ---
