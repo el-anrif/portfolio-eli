@@ -81,4 +81,4 @@ python3 -m http.server 8080     # puis http://localhost:8080
 - **Mobile** : mise en page verticale, îlot de navigation compact et menu déroulant.
 - **Thème clair / sombre** : bouton soleil/lune dans la barre (desktop et mobile), mémorisé dans `localStorage` (`eli-theme`) et restauré avant le premier rendu. Le thème clair est le mode par défaut ; le thème sombre reste disponible au clic. Le hero conserve sa photo sombre et ses textes crème dans les deux thèmes pour le contraste.
 - **Accessibilité** : `prefers-reduced-motion`, `:focus-visible`, alt, aria, attrs sémantiques, zones tactiles confortables.
-- **Formulaire** : envoi réel via [Formspree](https://formspree.io) en AJAX. Remplacez `VOTRE_ID` dans l'attribut `action` de `#contact-form` (`index.html`) par l'identifiant de votre formulaire.
+- **Formulaire** : envoi réel via [Formspree](https://formspree.io) en AJAX, endpoint configuré : `https://formspree.io/f/mkjjjbzd`. Pour changer de formulaire, remplacez l'URL dans l'attribut `action` de `#contact-form` (`index.html`).
