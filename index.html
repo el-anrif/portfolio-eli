@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#F4F7F2" id="theme-color" />
+  <meta name="description" content="Portfolio d'ELI-Anrif — Étudiant BTS SIO option SISR. Administration de systèmes et de réseaux, virtualisation, supervision des infrastructures." />
+  <title>ELI-Anrif — BTS SIO SISR · Portfolio</title>
+
+  <!-- Thème clair par défaut ; restaure le sombre mémorisé avant le premier rendu -->
+  <script>
+    try {
+      if (localStorage.getItem('eli-theme') === 'dark') {
+        document.documentElement.dataset.theme = 'dark';
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#072B26');
+      }
+    } catch (e) {}
+  </script>
+
+  <!-- Favicon (monogramme EA) -->
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23072B26"/><rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="%2377C0A3" stroke-width="2"/><text x="32" y="42" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="%23E2F362" text-anchor="middle">EA</text></svg>' />
+
+  <!-- Polices : Montserrat (titres) + Inter (texte) + JetBrains Mono (tags/code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css?v=20" />
+</head>
+
+<body>
+  <!-- Lien d'évitement (accessibilité) -->
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <!-- Icônes SVG de la navigation -->
+  <svg class="nav-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-home" viewBox="0 0 24 24">
+      <path d="m3 10.5 9-7.5 9 7.5" />
+      <path d="M5 9.5V21h14V9.5" />
+      <path d="M9 21v-6h6v6" />
+    </symbol>
+    <symbol id="i-user" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21a8 8 0 0 1 16 0" />
+    </symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24">
+      <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+    </symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24">
+      <rect x="5" y="5" width="14" height="14" rx="2" />
+      <rect x="9" y="9" width="6" height="6" rx="1" />
+      <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" />
+    </symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 7 9 6 9-6" />
+    </symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24">
+      <path d="m6 9 6 6 6-6" />
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="m5 12 4 4L19 6" />
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41" />
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24">
+      <path d="M20.5 14.2A8.6 8.6 0 0 1 9.8 3.5a8.6 8.6 0 1 0 10.7 10.7Z" />
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M7 17 17 7M8 7h9v9" />
+    </symbol>
+  </svg>
+
+  <!-- ============================================================ -->
+  <!-- NAVIGATION — encoches adaptatives                            -->
+  <!-- ============================================================ -->
+  <header class="notch-nav" id="nav">
+    <span class="notch-nav__rail" aria-hidden="true"></span>
+
+    <!-- Logo, desktop -->
+    <div class="notch-nav__logo">
+      <a class="notch-nav__logo-link" href="#accueil" aria-label="EA ELI-ANRIF — retour à l'accueil">
+        <span class="notch-nav__logo-mark">EA</span>
+        <span class="notch-nav__logo-text">ELI-ANRIF</span>
+      </a>
+    </div>
+
+    <!-- Onglets, desktop -->
+    <nav class="notch-nav__tabs" aria-label="Navigation principale">
+      <span class="notch-nav__pill" id="nav-pill" aria-hidden="true"></span>
+
+      <a class="notch-nav__tab is-active" data-nav-link href="#accueil" aria-current="location">
+        <svg class="notch-icon" aria-hidden="true"><use href="#i-home"></use></svg>
+        <span>Accueil</span>
+      </a>
+      <a class="notch-nav__tab" data-nav-link href="#a-propos">
+        <svg class="notch-icon" aria-hidden="true"><use href="#i-user"></use></svg>
+        <span>À propos</span>
+      </a>
+      <a class="notch-nav__tab" data-nav-link href="#projets">
+        <svg class="notch-icon" aria-hidden="true"><use href="#i-folder"></use></svg>
+        <span>Projets</span>
+      </a>
+      <a class="notch-nav__tab" data-nav-link href="#competences">
+        <svg class="notch-icon" aria-hidden="true"><use href="#i-cpu"></use></svg>
+        <span>Compétences</span>
+      </a>
+    </nav>
+
+    <!-- Action, desktop -->
+    <div class="notch-nav__action">
+      <button
+        class="notch-nav__theme"
+        type="button"
+        data-theme-toggle
+        aria-label="Activer le mode clair"
+      >
+        <svg class="notch-icon notch-nav__theme-icon notch-nav__theme-icon--sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+        <svg class="notch-icon notch-nav__theme-icon notch-nav__theme-icon--moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+      </button>
+      <a class="notch-nav__action-link" data-nav-link href="#contact">
+        <span class="notch-nav__action-dot" aria-hidden="true"></span>
+        <span>Contact</span>
+        <svg class="notch-icon notch-icon--arrow" aria-hidden="true"><use href="#i-arrow"></use></svg>
+      </a>
+    </div>
+
+    <!-- Version compacte, tablette / mobile -->
+    <div class="notch-nav__mobile" id="notch-mobile">
+      <a class="notch-nav__mobile-logo" href="#accueil" aria-label="EA — ELI-Anrif — retour à l'accueil">
+        <span>EA</span>
+      </a>
+
+      <button
+        class="notch-nav__toggle"
+        id="notch-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="notch-dropdown"
+        aria-label="Ouvrir le menu de navigation"
+      >
+        <span class="notch-nav__toggle-label" id="notch-mobile-label">Accueil</span>
+        <svg class="notch-icon notch-nav__chevron" aria-hidden="true"><use href="#i-chevron"></use></svg>
+      </button>
+
+      <button
+        class="notch-nav__theme notch-nav__theme--mobile"
+        type="button"
+        data-theme-toggle
+        aria-label="Activer le mode clair"
+      >
+        <svg class="notch-icon notch-nav__theme-icon notch-nav__theme-icon--sun" aria-hidden="true"><use href="#i-sun"></use></svg>
+        <svg class="notch-icon notch-nav__theme-icon notch-nav__theme-icon--moon" aria-hidden="true"><use href="#i-moon"></use></svg>
+      </button>
+
+      <a class="notch-nav__mobile-contact" data-nav-link href="#contact" aria-label="Aller à la section Contact">
+        <svg class="notch-icon" aria-hidden="true"><use href="#i-mail"></use></svg>
+      </a>
+
+      <nav class="notch-nav__dropdown" id="notch-dropdown" aria-label="Navigation mobile" aria-hidden="true">
+        <a class="notch-nav__drop-link is-active" data-nav-link href="#accueil" aria-current="location">
+          <svg class="notch-icon" aria-hidden="true"><use href="#i-home"></use></svg>
+          <span>Accueil</span>
+          <svg class="notch-icon notch-nav__check" aria-hidden="true"><use href="#i-check"></use></svg>
+        </a>
+        <a class="notch-nav__drop-link" data-nav-link href="#a-propos">
+          <svg class="notch-icon" aria-hidden="true"><use href="#i-user"></use></svg>
+          <span>À propos</span>
+          <svg class="notch-icon notch-nav__check" aria-hidden="true"><use href="#i-check"></use></svg>
+        </a>
+        <a class="notch-nav__drop-link" data-nav-link href="#projets">
+          <svg class="notch-icon" aria-hidden="true"><use href="#i-folder"></use></svg>
+          <span>Projets</span>
+          <svg class="notch-icon notch-nav__check" aria-hidden="true"><use href="#i-check"></use></svg>
+        </a>
+        <a class="notch-nav__drop-link" data-nav-link href="#competences">
+          <svg class="notch-icon" aria-hidden="true"><use href="#i-cpu"></use></svg>
+          <span>Compétences</span>
+          <svg class="notch-icon notch-nav__check" aria-hidden="true"><use href="#i-check"></use></svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="notch-nav__scrim" id="notch-scrim" aria-hidden="true"></div>
+
+  <main id="main">
+    <!-- ============================================================
+         HERO  —  image légèrement floutée, titre transparent
+         ============================================================ -->
+    <section class="hero" id="accueil">
+      <!-- Médias : une seule image + voile flouté léger sur toute la surface -->
+      <div class="hero__media" aria-hidden="true">
+        <div class="hero__img hero__img--base"></div>   <!-- image de fond -->
+        <div class="hero__img hero__img--blur"></div>   <!-- voile flouté léger (toute l'image) -->
+        <div class="hero__shade"></div>
+      </div>
+
+      <!-- Contenu -->
+      <div class="hero__content">
+        <p class="hero__label">Portfolio BTS SIO — SISR</p>
+
+        <h1 class="hero__title">
+          <!-- Les deux lignes sont entièrement transparentes :
+               l'image traverse les lettres, seul le contour reste visible. -->
+          <span class="hero__line hero__line--1">INFRA</span>
+          <span class="hero__line hero__line--2">SYSTÈMES &amp; RÉSEAUX</span>
+        </h1>
+
+        <p class="hero__sub">
+          Je conçois, déploie et sécurise des infrastructures réseau.
+        </p>
+
+        <a class="hero__cta magnetic" href="#projets">
+          <span>Découvrir mes projets</span><span class="hero__cta-arrow">→</span>
+        </a>
+      </div>
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- À PROPOS                                                     -->
+    <!-- ============================================================ -->
+    <section class="section" id="a-propos">
+      <div class="container">
+        <p class="kicker reveal" data-delay="0">// 01 — À propos</p>
+        <h2 class="section__title reveal" data-delay="1">Moi, en quelques mots</h2>
+
+        <div class="about">
+          <!-- Avatar (remplacer par une photo réelle) -->
+          <figure class="about__avatar glass reveal" data-delay="2">
+            <span class="about__monogram">EA</span>
+            <figcaption>Photo à remplacer</figcaption>
+          </figure>
+
+          <div class="about__text reveal" data-delay="3">
+            <p>
+              Je suis <strong>ELI-Anrif</strong>, étudiant en <strong>BTS SIO option SISR</strong>
+              (Solutions d'Infrastructure, Systèmes et Réseaux) au Lycée Younoussa Bamana, à Mamoudzou (Mayotte).
+            </p>
+            <p>
+              Passionné d'infrastructures et de réseaux, j'aime construire des systèmes qui tiennent debout :
+              segmentation réseau, Active Directory, parc informatique, supervision. Mon terrain de jeu, ce sont
+              les baies de brassage, les commutateurs et les serveurs — la « couche physique » du numérique.
+            </p>
+            <p>
+              Rigoureux et curieux, je m'appuie sur le référentiel BTS (blocs B1, B2 et B3)
+              et sur des TP concrets pour monter en compétence chaque semaine.
+            </p>
+          </div>
+
+          <!-- Chiffres clés animés -->
+          <ul class="about__stats">
+            <li class="glass reveal" data-delay="4">
+              <span class="stats__num" data-count="15" data-suffix="+">0</span>
+              <span class="stats__label">Projets &amp; TP réseaux</span>
+            </li>
+            <li class="glass reveal" data-delay="5">
+              <span class="stats__num" data-count="12" data-suffix="">0</span>
+              <span class="stats__label">Technologies manipulées</span>
+            </li>
+            <li class="glass reveal" data-delay="6">
+              <span class="stats__num" data-count="20" data-suffix="+">0</span>
+              <span class="stats__label">Documents techniques</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- PROJETS                                                       -->
+    <!-- ============================================================ -->
+    <section class="section" id="projets">
+      <div class="container">
+        <p class="kicker reveal">// 02 — Réalisations</p>
+        <h2 class="section__title reveal">Projets &amp; TP d'infrastructure</h2>
+
+        <div class="projects">
+          <!-- Projet 1 -->
+          <article class="proj-card glass reveal" data-delay="0">
+            <div class="proj-card__media">
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop"
+                   alt="Baie de serveurs et câblage réseau (visuel du projet Réseau PME)"
+                   loading="lazy" width="800" height="500" />
+              <span class="proj-card__tag">Packet Tracer</span>
+            </div>
+            <div class="proj-card__body">
+              <h3 class="proj-card__title">Réseau PME sécurisé &amp; segmenté</h3>
+              <p class="proj-card__desc">Infrastructure complète pour une PME : VLAN, ACL, NAT, DMZ et pare-feu — du plan d'adressage à la validation.</p>
+              <ul class="tags">
+                <li>Cisco</li><li>VLAN</li><li>ACL</li><li>NAT</li><li>DMZ</li>
+              </ul>
+              <button type="button" class="btn btn--outline" data-modal="modal-p1">
+                Voir le détail <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Projet 2 -->
+          <article class="proj-card glass reveal" data-delay="1">
+            <div class="proj-card__media">
+              <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop"
+                   alt="Serveur et salle informatique (visuel du TP OpenShowroom)"
+                   loading="lazy" width="800" height="500" />
+              <span class="proj-card__tag">TP OpenShowroom</span>
+            </div>
+            <div class="proj-card__body">
+              <h3 class="proj-card__title">OpenShowroom — AD &amp; GLPI 11</h3>
+              <p class="proj-card__desc">Déploiement d'Active Directory et de GLPI 11 : authentification LDAP, GLPI Agent et traitement de tickets.</p>
+              <ul class="tags">
+                <li>Windows Server</li><li>Active Directory</li><li>GLPI</li><li>LDAP</li>
+              </ul>
+              <button type="button" class="btn btn--outline" data-modal="modal-p2">
+                Voir le détail <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Projet 3 -->
+          <article class="proj-card glass reveal" data-delay="2">
+            <div class="proj-card__media">
+              <img src="https://images.unsplash.com/photo-1558346489-8037f4c6f790?q=80&w=800&auto=format&fit=crop"
+                   alt="Câbles réseau RJ45 (visuel du déploiement GLPI sur parc hétérogène)"
+                   loading="lazy" width="800" height="500" />
+              <span class="proj-card__tag">Parc hétérogène</span>
+            </div>
+            <div class="proj-card__body">
+              <h3 class="proj-card__title">Agent GLPI sur réseau hétérogène</h3>
+              <p class="proj-card__desc">Déploiement de l'agent GLPI sur un parc mixte Debian, Windows 10 et Windows Server 2022.</p>
+              <ul class="tags">
+                <li>GLPI Agent</li><li>Debian</li><li>Windows 10</li><li>W. Server 2022</li>
+              </ul>
+              <button type="button" class="btn btn--outline" data-modal="modal-p3">
+                Voir le détail <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- COMPÉTENCES                                                   -->
+    <!-- ============================================================ -->
+    <section class="section" id="competences">
+      <div class="container">
+        <p class="kicker reveal">// 03 — Compétences</p>
+        <h2 class="section__title reveal">Domaines de compétence</h2>
+        <p class="section__lead reveal">
+          Niveaux en 3 points — pas de barres de pourcentage : une compétence se prouve par un livrable.
+        </p>
+
+        <div class="skills">
+          <!-- Réseaux -->
+          <article class="glass skill reveal" data-delay="0">
+            <h3 class="skill__title">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="7" cy="6" r="2.2"/><circle cx="17" cy="12" r="2.2"/><circle cx="7" cy="18" r="2.2"/></svg>
+              Réseaux
+            </h3>
+            <div class="skill__grid">
+              <div class="pill"><span class="pill__name">Routage &amp; VLAN</span><span class="dots" role="img" aria-label="Maîtrisé"><i></i><i></i><i></i></span></div>
+              <div class="pill"><span class="pill__name">ACL &amp; segmentation</span><span class="dots" role="img" aria-label="Pratiqué"><i></i><i></i><i class="off"></i></span></div>
+              <div class="pill"><span class="pill__name">NAT &amp; pare-feu</span><span class="dots" role="img" aria-label="Pratiqué"><i></i><i></i><i class="off"></i></span></div>
+              <div class="pill"><span class="pill__name">Cisco Packet Tracer</span><span class="dots" role="img" aria-label="Maîtrisé"><i></i><i></i><i></i></span></div>
+            </div>
+          </article>
+
+          <!-- Systèmes -->
+          <article class="glass skill reveal" data-delay="1">
+            <h3 class="skill__title">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M4 20h16M9.5 9v3"/><circle cx="9.5" cy="8.2" r=".4"/></svg>
+              Systèmes
+            </h3>
+            <div class="skill__grid">
+              <div class="pill"><span class="pill__name">Windows Server &amp; AD</span><span class="dots" role="img" aria-label="Maîtrisé"><i></i><i></i><i></i></span></div>
+              <div class="pill"><span class="pill__name">Linux / Debian</span><span class="dots" role="img" aria-label="Pratiqué"><i></i><i></i><i class="off"></i></span></div>
+              <div class="pill"><span class="pill__name">DNS / DHCP</span><span class="dots" role="img" aria-label="Pratiqué"><i></i><i></i><i class="off"></i></span></div>
+              <div class="pill"><span class="pill__name">GPO &amp; comptes</span><span class="dots" role="img" aria-label="Pratiqué"><i></i><i></i><i class="off"></i></span></div>
+            </div>
+          </article>
+
+          <!-- Supervision & ITSM -->
+          <article class="glass skill reveal" data-delay="2">
+            <h3 class="skill__title">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 12h4l2.5-7 4 14 2.5-7H21"/></svg>
+              Supervision &amp; ITSM
+            </h3>
+            <div class="skill__grid">
+              <div class="pill"><span class="pill__name">GLPI 11</span><span class="dots" role="img" aria-label="Maîtrisé"><i></i><i></i><i></i></span></div>
+              <div class="pill"><span class="pill__name">Agent GLPI / inventaire</span><span class="dots" role="img" aria-label="Pratiqué"><i></i><i></i><i class="off"></i></span></div>
+              <div class="pill"><span class="pill__name">Tickets / helpdesk</span><span class="dots" role="img" aria-label="Pratiqué"><i></i><i></i><i class="off"></i></span></div>
+              <div class="pill"><span class="pill__name">Zabbix (découverte)</span><span class="dots" role="img" aria-label="Découverte"><i></i><i class="off"></i><i class="off"></i></span></div>
+            </div>
+          </article>
+
+          <!-- Virtualisation & scripts -->
+          <article class="glass skill reveal" data-delay="3">
+            <h3 class="skill__title">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 6l8 5 8-5M4 12l8 5 8-5M4 18l8 5 8-5"/></svg>
+              Virtualisation &amp; scripts
+            </h3>
+            <div class="skill__grid">
+              <div class="pill"><span class="pill__name">Hyperviseurs (Proxmox)</span><span class="dots" role="img" aria-label="Pratiqué"><i></i><i></i><i class="off"></i></span></div>
+              <div class="pill"><span class="pill__name">PowerShell</span><span class="dots" role="img" aria-label="Pratiqué"><i></i><i></i><i class="off"></i></span></div>
+              <div class="pill"><span class="pill__name">Bash</span><span class="dots" role="img" aria-label="Pratiqué"><i></i><i></i><i class="off"></i></span></div>
+              <div class="pill"><span class="pill__name">Conteneurs (découverte)</span><span class="dots" role="img" aria-label="Découverte"><i></i><i class="off"></i><i class="off"></i></span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- TABLEAU DE SYNTHÈSE (E5)                                      -->
+    <!-- ============================================================ -->
+    <section class="section section--compact" id="synthese">
+      <div class="container">
+        <div class="glass e5 reveal">
+          <div class="e5__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+          </div>
+          <div class="e5__text">
+            <h2 class="e5__title">Tableau de synthèse BTS (épreuve E5)</h2>
+            <p class="e5__desc">
+              Parcours de professionnalisation : projets, stages et compétences du référentiel,
+              présentés pour l'épreuve E5.
+            </p>
+          </div>
+          <a class="btn" href="#" data-placeholder-todo download aria-disabled="true">
+            Télécharger (PDF)
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CONTACT                                                       -->
+    <!-- ============================================================ -->
+    <section class="section" id="contact">
+      <div class="container">
+        <p class="kicker reveal">// 04 — Contact</p>
+        <h2 class="section__title reveal">Un projet ? Une alternance ? Parlons-en</h2>
+
+        <div class="contact">
+          <!-- Coordonnées -->
+          <aside class="contact__side">
+            <div class="glass contact__status reveal" data-delay="0">
+              <span class="led" aria-hidden="true"></span>
+              <div>
+                <p class="contact__status-title">Disponible pour un stage / une alternance</p>
+                <p class="contact__status-sub">Réponse sous 48 h en semaine</p>
+              </div>
+            </div>
+
+            <ul class="contact__links reveal" data-delay="1">
+              <li>
+                <a href="mailto:ibnasri.sio@gmail.com" class="contact__link">
+                  <span class="contact__link-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                  </span>
+                  <span><b>Email</b><em>ibnasri.sio@gmail.com</em></span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" class="contact__link">
+                  <span class="contact__link-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05C22.9 8 24 11 24 15v8h-4v-7c0-1.7 0-3.9-2.4-3.9s-2.8 1.9-2.8 3.8V23H.5V8z"/></svg>
+                  </span>
+                  <span><b>LinkedIn</b><em>lien à mettre à jour</em></span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/" target="_blank" rel="noreferrer" class="contact__link">
+                  <span class="contact__link-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.81 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0C17.32 4.55 18.33 4.87 18.33 4.87c.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.82 5.63-5.5 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </span>
+                  <span><b>GitHub</b><em>lien à mettre à jour</em></span>
+                </a>
+              </li>
+            </ul>
+          </aside>
+
+          <!-- Formulaire -->
+          <div class="glass contact__form reveal" data-delay="2">
+            <h3 class="contact__form-title">Envoyez-moi un message</h3>
+            <form id="contact-form" novalidate>
+              <div class="field-row">
+                <div class="field">
+                  <label for="nom">Nom</label>
+                  <input id="nom" name="nom" type="text" autocomplete="name" placeholder="Votre nom" required />
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required />
+                </div>
+              </div>
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Objet de votre demande (stage, alternance, question…)" required></textarea>
+              </div>
+              <button type="submit" class="btn btn--block magnetic">Envoyer le message</button>
+              <p class="form__ok" id="form-ok" role="status" hidden>
+                Merci ! (démo — branchez votre service d'envoi, ex. Formspree.)
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER                                                        -->
+  <!-- ============================================================ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span data-year>2026</span> ELI-Anrif — BTS SIO option SISR</p>
+      <p class="footer__mono">Lycée Younoussa Bamana · Mamoudzou, Mayotte</p>
+      <a href="#accueil">Retour en haut ↑</a>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       MODALES PROJETS (verre dépoli)
+       ============================================================ -->
+  <div class="modal" id="modal-p1" role="dialog" aria-modal="true" aria-labelledby="p1-title" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel glass-strong">
+      <button type="button" class="modal__close" data-close aria-label="Fermer">✕</button>
+      <p class="kicker">Projet 01 — Réseaux</p>
+      <h3 class="modal__title" id="p1-title">Réseau PME sécurisé &amp; segmenté</h3>
+
+      <p class="modal__context">
+        <b>Contexte :</b> TP BTS SIO — infrastructure complète pour une PME fictive
+        (Packet Tracer). Le but : un réseau qui tient debout, segmenté et sécurisé.
+      </p>
+
+      <h4>Étapes réalisées</h4>
+      <ol class="modal__steps">
+        <li>Plan d'adressage IP et découpage en VLAN (administration, production, invités, DMZ).</li>
+        <li>Configuration des ACL pour filtrer le trafic inter-VLAN.</li>
+        <li>Mise en place du NAT et d'une DMZ pour les serveurs exposés.</li>
+        <li>Pare-feu et règles de sécurité sur les accès Internet.</li>
+        <li>Tests de connectivité de bout en bout et documentation.</li>
+      </ol>
+
+      <h4>Captures</h4>
+      <div class="modal__shots">
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=600&auto=format&fit=crop" alt="Visuel à remplacer : schéma réseau Packet Tracer" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=600&auto=format&fit=crop" alt="Visuel à remplacer : configuration des ACL" loading="lazy" />
+      </div>
+      <p class="modal__note mono">⚠ Captures réelles (Packet Tracer) à insérer dans /assets/img/projets/p1/.</p>
+
+      <div class="modal__footer">
+        <a class="btn" href="#" data-placeholder-todo aria-disabled="true">Documentation (PDF)<span aria-hidden="true">↓</span></a>
+        <button type="button" class="btn btn--ghost" data-close>Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-p2" role="dialog" aria-modal="true" aria-labelledby="p2-title" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel glass-strong">
+      <button type="button" class="modal__close" data-close aria-label="Fermer">✕</button>
+      <p class="kicker">Projet 02 — Systèmes &amp; ITSM</p>
+      <h3 class="modal__title" id="p2-title">OpenShowroom — Active Directory &amp; GLPI 11</h3>
+
+      <p class="modal__context">
+        <b>Contexte :</b> TP OpenShowroom — déploiement d'un contrôleur de domaine et d'une
+        solution ITSM pour gérer parc et tickets.
+      </p>
+
+      <h4>Étapes réalisées</h4>
+      <ol class="modal__steps">
+        <li>Installation et configuration d'Active Directory (domaine, OUs, comptes).</li>
+        <li>Déploiement de GLPI 11 (PHP / MySQL) sur un serveur Debian.</li>
+        <li>Authentification LDAP des utilisateurs du domaine dans GLPI.</li>
+        <li>Installation de l'agent GLPI sur les postes et inventaire du parc.</li>
+        <li>Création d'un helpdesk : ouvertures et traitement de tickets.</li>
+      </ol>
+
+      <h4>Captures</h4>
+      <div class="modal__shots">
+        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=600&auto=format&fit=crop" alt="Visuel à remplacer : console AD" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=600&auto=format&fit=crop" alt="Visuel à remplacer : GLPI — liste des tickets" loading="lazy" />
+      </div>
+      <p class="modal__note mono">⚠ Captures réelles (Active Directory, GLPI) à insérer dans /assets/img/projets/p2/.</p>
+
+      <div class="modal__footer">
+        <a class="btn" href="#" data-placeholder-todo aria-disabled="true">Procédure d'install (PDF)<span aria-hidden="true">↓</span></a>
+        <button type="button" class="btn btn--ghost" data-close>Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-p3" role="dialog" aria-modal="true" aria-labelledby="p3-title" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel glass-strong">
+      <button type="button" class="modal__close" data-close aria-label="Fermer">✕</button>
+      <p class="kicker">Projet 03 — Parc &amp; inventaire</p>
+      <h3 class="modal__title" id="p3-title">Agent GLPI sur réseau hétérogène</h3>
+
+      <p class="modal__context">
+        <b>Contexte :</b> déploiement de l'agent GLPI sur un parc mixte :
+        Debian, Windows 10 et Windows Server 2022, et remontée automatique de l'inventaire.
+      </p>
+
+      <h4>Étapes réalisées</h4>
+      <ol class="modal__steps">
+        <li>Préparation du paquet agent (Debian) et de l'installeur Windows (.msi).</li>
+        <li>Déploiement en ligne de commande et/ou via GPO sur les postes du domaine.</li>
+        <li>Validation de la remontée d'inventaire vers le serveur GLPI.</li>
+        <li>Traitement des écarts (machine non inventoriée, droits, pare-feu).</li>
+        <li>Documentation du parcours de déploiement.</li>
+      </ol>
+
+      <h4>Captures</h4>
+      <div class="modal__shots">
+        <img src="https://images.unsplash.com/photo-1558346489-8037f4c6f790?q=80&w=600&auto=format&fit=crop" alt="Visuel à remplacer : inventaire GLPI du parc" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1558346489-8037f4c6f790?q=80&w=600&auto=format&fit=crop" alt="Visuel à remplacer : agent GLPI sur Windows" loading="lazy" />
+      </div>
+      <p class="modal__note mono">⚠ Captures réelles (GLPI, agent) à insérer dans /assets/img/projets/p3/.</p>
+
+      <div class="modal__footer">
+        <a class="btn" href="#" data-placeholder-todo aria-disabled="true">Procédure de déploiement (PDF)<span aria-hidden="true">↓</span></a>
+        <button type="button" class="btn btn--ghost" data-close>Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=17"></script>
+</body>
+</html>
