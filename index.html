@@ -28,7 +28,7 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="style.css?v=20" />
+  <link rel="stylesheet" href="style.css?v=21" />
 </head>
 
 <body>
@@ -461,11 +461,11 @@
 
             <ul class="contact__links reveal" data-delay="1">
               <li>
-                <a href="mailto:ibnasri.sio@gmail.com" class="contact__link">
+                <a href="mailto:elanrifdaroueche37@gmail.com" class="contact__link">
                   <span class="contact__link-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
                   </span>
-                  <span><b>Email</b><em>ibnasri.sio@gmail.com</em></span>
+                  <span><b>Email</b><em>elanrifdaroueche37@gmail.com</em></span>
                 </a>
               </li>
               <li>
@@ -490,7 +490,8 @@
           <!-- Formulaire -->
           <div class="glass contact__form reveal" data-delay="2">
             <h3 class="contact__form-title">Envoyez-moi un message</h3>
-            <form id="contact-form" novalidate>
+            <form id="contact-form" action="https://formspree.io/f/VOTRE_ID" method="POST" novalidate>
+              <input type="hidden" name="_subject" value="Nouveau message depuis le portfolio ELI-Anrif" />
               <div class="field-row">
                 <div class="field">
                   <label for="nom">Nom</label>
@@ -507,8 +508,9 @@
               </div>
               <button type="submit" class="btn btn--block magnetic">Envoyer le message</button>
               <p class="form__ok" id="form-ok" role="status" hidden>
-                Merci ! (démo : branchez votre service d'envoi, ex. Formspree.)
+                Merci ! Votre message a bien été envoyé. Je vous répondrai rapidement.
               </p>
+              <p class="form__error" id="form-error" role="alert" hidden></p>
             </form>
           </div>
         </div>
@@ -635,6 +637,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=17"></script>
+  <script src="script.js?v=18"></script>
 </body>
 </html>

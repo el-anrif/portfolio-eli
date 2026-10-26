@@ -1631,6 +1631,15 @@ body.nav-open .notch-nav__scrim {
   border-radius: var(--radius-sm);
   padding: 0.8rem 1rem;
 }
+.form__error {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  color: var(--ink);
+  background: rgba(217, 45, 32, 0.08);
+  border: 1px solid rgba(217, 45, 32, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem;
+}
 
 /* --------------------------------------------------------------------------
    10. MODALES

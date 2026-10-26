@@ -355,23 +355,93 @@
   );
 
   /* ------------------------------------------------------------------------
-     9. FORMULAIRE DE CONTACT (démo — à brancher sur Formspree / mailto)
+     9. FORMULAIRE DE CONTACT — envoi via Formspree (AJAX)
      ------------------------------------------------------------------------ */
   const form = document.getElementById('contact-form');
   const formOk = document.getElementById('form-ok');
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-    formOk.hidden = false;
-    formOk.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    // Pour un envoi réel (sans backend), remplacez l'action du formulaire par :
-    //   <form action="https://formspree.io/f/VOTRE_ID" method="POST">
-    // puis retirez preventDefault (ou laissez ce bloc commenté).
-    form.reset();
-  });
+  const formError = document.getElementById('form-error');
+
+  if (form && formOk && formError) {
+    const submitButton = form.querySelector('button[type="submit"]');
+    const defaultSubmitText = submitButton?.textContent || 'Envoyer le message';
+    const endpoint = form.getAttribute('action') || '';
+    const isConfigured =
+      endpoint.startsWith('https://formspree.io/f/') &&
+      !endpoint.includes('VOTRE_ID');
+
+    const showNotice = (element, message) => {
+      formOk.hidden = true;
+      formError.hidden = true;
+      element.textContent = message;
+      element.hidden = false;
+      element.scrollIntoView({
+        behavior: reducedMotion ? 'auto' : 'smooth',
+        block: 'nearest',
+      });
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      formOk.hidden = true;
+      formError.hidden = true;
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (!isConfigured) {
+        showNotice(
+          formError,
+          "Le formulaire n'est pas encore configuré. Écrivez-moi à elanrifdaroueche37@gmail.com."
+        );
+        return;
+      }
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Envoi en cours…';
+      }
+      form.setAttribute('aria-busy', 'true');
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+
+        if (response.ok) {
+          form.reset();
+          showNotice(
+            formOk,
+            'Merci ! Votre message a bien été envoyé. Je vous répondrai rapidement.'
+          );
+        } else {
+          let message =
+            "L'envoi a échoué. Réessayez ou écrivez-moi directement à elanrifdaroueche37@gmail.com.";
+          try {
+            const data = await response.json();
+            if (Array.isArray(data.errors) && data.errors.length) {
+              message = data.errors.map((error) => error.message).join(' ');
+            }
+          } catch (err) {}
+          showNotice(formError, message);
+        }
+      } catch (err) {
+        showNotice(
+          formError,
+          "Impossible de joindre le serveur. Vérifiez votre connexion ou écrivez-moi à elanrifdaroueche37@gmail.com."
+        );
+      } finally {
+        form.removeAttribute('aria-busy');
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = defaultSubmitText;
+        }
+      }
+    });
+  }
 
   /* ------------------------------------------------------------------------
      10. ANNÉE DU FOOTER

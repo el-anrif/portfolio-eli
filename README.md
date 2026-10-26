@@ -35,7 +35,7 @@ One-page glassmorphism, univers réseau. **HTML + CSS + JS vanilla** — aucun f
 
 ### Divers
 - [ ] Mettre à jour les liens **LinkedIn** et **GitHub** (section contact).
-- [ ] Vérifier l'adresse e-mail de contact (`ibnasri.sio@gmail.com` actuellement).
+- [x] Adresse e-mail de contact configurée : `elanrifdaroueche37@gmail.com`.
 
 ---
 
@@ -53,6 +53,18 @@ One-page glassmorphism, univers réseau. **HTML + CSS + JS vanilla** — aucun f
 python3 -m http.server 8080     # puis http://localhost:8080
 ```
 
+## ✦ Configurer Formspree
+
+1. Créez un compte sur [formspree.io](https://formspree.io) avec `elanrifdaroueche37@gmail.com`, puis validez l'e-mail de vérification.
+2. Créez un nouveau formulaire (ex. « Portfolio ELI-Anrif ») et vérifiez que l'adresse de réception est la bonne.
+3. Copiez l'endpoint fourni, du type `https://formspree.io/f/xxxxxxxx`.
+4. Dans `index.html`, remplacez `VOTRE_ID` dans l'attribut `action` du formulaire :
+   ```html
+   <form id="contact-form" action="https://formspree.io/f/xxxxxxxx" method="POST" novalidate>
+   ```
+5. Testez avec un serveur local (`python3 -m http.server 8080`), pas en ouvrant directement le fichier `file://`.
+6. Le formulaire affiche un message de succès ou d'erreur sans quitter la page. Le champ `email` sert automatiquement d'adresse de réponse, et `_subject` définit l'objet du message.
+
 ## ✦ Déploiement GitHub Pages
 
 1. `git init && git add . && git commit -m "Portfolio BTS SIO SISR"`
@@ -69,4 +81,4 @@ python3 -m http.server 8080     # puis http://localhost:8080
 - **Mobile** : mise en page verticale, îlot de navigation compact et menu déroulant.
 - **Thème clair / sombre** : bouton soleil/lune dans la barre (desktop et mobile), mémorisé dans `localStorage` (`eli-theme`) et restauré avant le premier rendu. Le thème clair est le mode par défaut ; le thème sombre reste disponible au clic. Le hero conserve sa photo sombre et ses textes crème dans les deux thèmes pour le contraste.
 - **Accessibilité** : `prefers-reduced-motion`, `:focus-visible`, alt, aria, attrs sémantiques, zones tactiles confortables.
-- **Formulaire** : démo locale — brancher [Formspree](https://formspree.io) (voir remarque dans `script.js`) pour un envoi réel.
+- **Formulaire** : envoi réel via [Formspree](https://formspree.io) en AJAX. Remplacez `VOTRE_ID` dans l'attribut `action` de `#contact-form` (`index.html`) par l'identifiant de votre formulaire.
