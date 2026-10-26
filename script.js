@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Portfolio — ELI-Anrif · BTS SIO SISR
+   Portfolio — EL-Anrif · BTS SIO SISR
    Interactions : thème clair/sombre, navigation à encoches, reveal au scroll,
    compteurs, modales, boutons magnétiques, parallaxe du hero, éclat sur les cartes.
    ========================================================================== */

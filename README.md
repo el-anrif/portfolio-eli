@@ -1,4 +1,4 @@
-# Portfolio — ELI-Anrif · BTS SIO option SISR
+# Portfolio — EL-Anrif · BTS SIO option SISR
 
 One-page glassmorphism, univers réseau. **HTML + CSS + JS vanilla** — aucun framework, aucun build : dépliable sur GitHub Pages tel quel.
 
@@ -57,7 +57,7 @@ python3 -m http.server 8080     # puis http://localhost:8080
 ## ✦ Configurer Formspree
 
 1. Créez un compte sur [formspree.io](https://formspree.io) avec `elanrifdaroueche37@gmail.com`, puis validez l'e-mail de vérification.
-2. Créez un nouveau formulaire (ex. « Portfolio ELI-Anrif ») et vérifiez que l'adresse de réception est la bonne.
+2. Créez un nouveau formulaire (ex. « Portfolio EL-Anrif ») et vérifiez que l'adresse de réception est la bonne.
 3. Copiez l'endpoint fourni, du type `https://formspree.io/f/xxxxxxxx`.
 4. Dans `index.html`, remplacez `VOTRE_ID` dans l'attribut `action` du formulaire :
    ```html
@@ -69,7 +69,7 @@ python3 -m http.server 8080     # puis http://localhost:8080
 ## ✦ Déploiement GitHub Pages
 
 1. `git init && git add . && git commit -m "Portfolio BTS SIO SISR"`
-2. Créer un dépôt (ex. `eli-anrif.github.io` sur GitHub), `git push`.
+2. Créer un dépôt (ex. `el-anrif.github.io` sur GitHub), `git push`.
 3. GitHub → **Settings → Pages** → source `Deploy from a branch` → branche `main` → `/ (root)`.
 4. Le site est en ligne sur `https://<nom>.github.io`.
 
